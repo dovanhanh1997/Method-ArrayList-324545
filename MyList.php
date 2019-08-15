@@ -4,10 +4,9 @@ const DEFAULT_CAPACITY = 10;
 
 class MyList extends Data
 {
-    public $size = 0;
-    public $capacity = 0;
-    public $maxCapacity = DEFAULT_CAPACITY;
+    public $capacity;
     public $arrayList;
+    public $maxCapacity = DEFAULT_CAPACITY;
 
     public function __construct($arr = '')
     {
@@ -16,8 +15,8 @@ class MyList extends Data
         } else {
             $this->arrayList = array();
         }
-
     }
+
 
     function remove($value)
     {
@@ -33,52 +32,40 @@ class MyList extends Data
     function add($index, $data)
     {
         if ($this->isCapacityFull()) {
-            die('The capacity is full. Can not add');
+            die("The Capacity is full. Can't not add ");
         } elseif ($this->isEmptyArray() || $this->isIndexBiggerThanCountArray($index)) {
             array_push($this->arrayList, $data);
         } else {
             $newArray = array();
-            for ($i = 0; $i < $index; $i++) {
+            for ($i = 0; $i < $index; $i++)
                 $newArray[] = $this->arrayList[$i];
-            }
-            $newArray[] = $data;
-            for ($i = $index; $i < count($this->arrayList); $i++) {
-                $newArray[] = $this->arrayList[$i];
-            }
-
-            $this->arrayList = $newArray;
-            $this->setCapacity(count($this->getArrayList()));
-
         }
+        $newArray[] = $data;
+        for ($i = $index; $i < count($this->arrayList); $i++) {
+            $newArray[] = $this->arrayList[$i];
+        }
+
+        $this->arrayList = $newArray;
+        $this->setCapacity(count($this->getCapacity()));
     }
 
     function update($value, $data)
     {
-        for ($i = 0; $i < count($this->getArrayList()); $i++) {
-            if ($this->arrayList[$i] == $value) {
+        for ($i = 0; $i < count($this->arrayList); $i++) {
+            if ($value = $this->arrayList[$i]) {
                 $this->arrayList[$i] = $data;
             }
         }
     }
 
-    public function getArrayList()
+    function setCapacity($capacity)
     {
-        return $this->arrayList;
+        $this->capacity = $capacity;
     }
 
-    public function getSize()
+    public function getCapacity()
     {
-        return count($this->arrayList);
-    }
-
-    public function isEmptyArray()
-    {
-        return count($this->arrayList) <= 0;
-    }
-
-    public function isIndexBiggerThanCountArray($index)
-    {
-        return $index > count($this->arrayList);
+        return $this->capacity;
     }
 
     public function isCapacityFull()
@@ -89,13 +76,18 @@ class MyList extends Data
         return false;
     }
 
-    public function setCapacity($capacity)
+    public function isEmptyArray()
     {
-        $this->capacity = $capacity;
+        return count($this->getArrayList()) <= 0;
     }
 
-    public function getCapacity()
+    public function isIndexBiggerThanCountArray($index)
     {
-        return $this->capacity;
+        return $index > count($this->getArrayList());
+    }
+
+    public function getArrayList()
+    {
+        return $this->arrayList;
     }
 }

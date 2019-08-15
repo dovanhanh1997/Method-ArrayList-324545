@@ -24,12 +24,19 @@ foreach ($myList->getArrayList() as $value)
 {
     echo $value.' ';
 }
-echo '<br>';
-echo $myList->getCapacity();
-
-echo '<br>Update <br>';
-$myList->update(6,10);
-foreach ($myList->getArrayList() as $value)
-{
-    echo $value.' ';
-}
+//echo '<br>';
+//echo $myList->getCapacity();
+//
+//echo '<br>Update <br>';
+//$myList->update(6,10);
+//foreach ($myList->getArrayList() as $value)
+//{
+//    echo $value.' ';
+//}
+//echo '<br>';
+//$myList->add(5,9);
+//$myList->add(2,4);
+//
+//foreach ($myList->getArrayList() as $item) {
+//    echo $item.' ';
+//}
